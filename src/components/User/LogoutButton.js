@@ -13,7 +13,7 @@ class UserLogoutButton extends Component {
 }
 
 export default connect(
-  null,
+  null, // mapStateToProps가 필요 없는 경우
   dispatch => ({
     onLogout: () => dispatch(logout()),
   })

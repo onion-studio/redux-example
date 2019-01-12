@@ -10,6 +10,8 @@ const initialState = {
   items: [],
 };
 
+// --- reducer ---
+
 export default (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
@@ -22,6 +24,8 @@ export default (state = initialState, action) =>
         break;
     }
   });
+
+// --- action creators ---
 
 function loading() {
   return {
@@ -37,6 +41,8 @@ function fetchComplete(items) {
     },
   };
 }
+
+// --- thunks ---
 
 export function fetchTodos() {
   return async dispatch => {

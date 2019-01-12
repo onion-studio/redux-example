@@ -1,68 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Redux 사용 예제
 
-## Available Scripts
+TODO: react-router + redux 연동
 
-In the project directory, you can run:
+이 코드를 읽기 위해서는 공식 문서의 [Basics](https://redux.js.org/basics/basic-tutorial) + [Async Actions](https://redux.js.org/advanced/async-actions)에 대한 이해가 필요함.
 
-### `npm start`
+## Ducks 패턴
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Redux와 관련된 여러 구성요소(reducer, action type, action creator, thunk 등)을 공식 문서에 나온 것처럼 서로 다른 파일에 작성하면, 파일 개수가 많아지고 폴더 구조가 너무 복잡해진다. 이에 **서로 연관된 구성요소를 하나의 파일에 작성**하는 Ducks 패턴이 등장했다.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+[관련 블로그](http://guswnsxodlf.github.io/redux-ducks-pattern)
 
-### `npm test`
+이 프로젝트는 Ducks 패턴으로 작성되어 있음.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 폴더 구조
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+기본적으로 components 폴더에 container 컴포넌트를 작성하되, 필요하다면 presentational 컴포넌트를 분리해 **같은 폴더에** 두는 방식!

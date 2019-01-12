@@ -18,6 +18,8 @@ const initialState = {
   username: null,
 };
 
+// --- reducer ---
+
 export default (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
@@ -34,6 +36,8 @@ export default (state = initialState, action) =>
         break;
     }
   });
+
+// --- action creators ---
 
 export function loading() {
   return {
@@ -56,6 +60,8 @@ export function completeLogout() {
     type: COMPLETE_LOGOUT,
   };
 }
+
+// --- thunks ---
 
 export function register(username, password) {
   return async dispatch => {

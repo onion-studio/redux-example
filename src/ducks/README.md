@@ -1,0 +1,1 @@
+http://guswnsxodlf.github.io/redux-ducks-pattern
