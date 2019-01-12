@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default function(WrappedComponent) {
+export default function withUser(WrappedComponent) {
   class WithUser extends Component {
     static defaultProps = {
       isLoggedIn: false,

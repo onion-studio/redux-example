@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { refreshUserInfo } from '../../ducks/user';
+import { compose } from 'redux';
 import { getToken } from '../../token';
+import withUser from './withUser';
 
 class UserInfo extends Component {
   static defaultProps = {
     loading: false,
     username: null,
-    fetch: () => {},
   };
 
   componentDidMount() {
@@ -21,20 +21,16 @@ class UserInfo extends Component {
     const { loading, username } = this.props;
     if (loading) {
       return <div>Loading...</div>;
-    } else if (username) {
-      return <div>Username: {username}</div>;
     } else {
-      return <div>No information</div>;
+      return <div>Username: {username}</div>;
     }
   }
 }
 
-export default connect(
-  state => ({
+export default compose(
+  withUser,
+  connect(state => ({
     loading: state.user.loading,
     username: state.user.username,
-  }),
-  dispatch => ({
-    fetch: () => dispatch(refreshUserInfo()),
-  })
+  }))
 )(UserInfo);
