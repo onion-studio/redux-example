@@ -1,6 +1,9 @@
 import produce from 'immer';
+import api from '../api';
 
-const LOADING = 'redux-example/todo/LOADING';
+const prefix = 'redux-example/todo/';
+const LOADING = prefix + 'LOADING';
+const FETCH_COMPLETE = prefix + 'FETCH_COMPLETE';
 
 const initialState = {
   loading: false,
@@ -13,9 +16,32 @@ export default (state = initialState, action) =>
       case LOADING:
         draft.loading = true;
         break;
+      case FETCH_COMPLETE:
+        draft.loading = false;
+        draft.items = action.payload.items;
+        break;
     }
   });
 
+function loading() {
+  return {
+    type: LOADING,
+  };
+}
+
+function fetchComplete(items) {
+  return {
+    type: FETCH_COMPLETE,
+    payload: {
+      items,
+    },
+  };
+}
+
 export function fetchTodos() {
-  return async dispatch => {};
+  return async dispatch => {
+    dispatch(loading());
+    const { data } = await api.get('/todos');
+    dispatch(fetchComplete(data));
+  };
 }
