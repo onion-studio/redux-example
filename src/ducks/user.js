@@ -1,5 +1,3 @@
-import produce from 'immer';
-
 import api from '../api';
 import { setToken, removeToken } from '../token';
 
@@ -22,22 +20,28 @@ const initialState = {
   username: null,
 };
 
-export default (state = initialState, action) =>
-  produce(state, draft => {
-    switch (action.type) {
-      case LOADING:
-        draft.loading = true;
-        break;
-      case COMPLETE_LOGIN:
-        draft.loading = false;
-        draft.id = action.payload.id;
-        draft.username = action.payload.username;
-        break;
-      case COMPLETE_LOGOUT:
-        draft.username = null;
-        break;
-    }
-  });
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case LOADING:
+      // 불변성을 지키기 위해, 내용이 바뀔 때마다 참조가 바뀌도록 해 준다.
+      return {
+        ...state,
+        loading: true,
+      };
+    case COMPLETE_LOGIN:
+      return {
+        ...state,
+        loading: false,
+        id: action.payload.id,
+        username: action.payload.username,
+      };
+    case COMPLETE_LOGOUT:
+      return initialState;
+    // immer를 사용하지 않는 경우, 반드시 default case를 명시해주어야 한다.
+    default:
+      return state;
+  }
+};
 
 // --- action creators ---
 
