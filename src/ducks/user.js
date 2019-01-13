@@ -5,9 +5,13 @@ import { setToken, removeToken } from '../token';
 
 const prefix = 'redux-example/user/';
 
+// --- action types ---
+
 const LOADING = prefix + 'LOADING';
 const COMPLETE_LOGIN = prefix + 'COMPLETE_LOGIN';
 const COMPLETE_LOGOUT = prefix + 'COMPLETE_LOGOUT';
+
+// --- reducer ---
 
 const initialState = {
   // username을 불러오기 위한 로딩 과정 중에 있음을 나타냄
@@ -17,8 +21,6 @@ const initialState = {
   // 사용자의 username
   username: null,
 };
-
-// --- reducer ---
 
 export default (state = initialState, action) =>
   produce(state, draft => {
@@ -61,7 +63,7 @@ export function completeLogout() {
   };
 }
 
-// --- thunks ---
+// --- thunk creators ---
 
 export function register(username, password) {
   return async dispatch => {

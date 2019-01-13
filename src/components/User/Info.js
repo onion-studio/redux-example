@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getToken } from '../../token';
 import withUser from './withUser';
 
 class UserInfo extends Component {
@@ -9,13 +8,6 @@ class UserInfo extends Component {
     loading: false,
     username: null,
   };
-
-  componentDidMount() {
-    const { username, fetch } = this.props;
-    if (getToken() && !username) {
-      fetch();
-    }
-  }
 
   render() {
     const { loading, username } = this.props;
